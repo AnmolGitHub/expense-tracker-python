@@ -1,4 +1,5 @@
 expenses = []
+summary = {}
 
 def add_expense(expenses):
 
@@ -31,7 +32,13 @@ def view_expenses(expenses):
             f"category: {expense['category']}, "
             f"date: {expense['date']}"
         )
-
+def monthly_summary(expenses):
+    month = input("Enter Month(YYYY-MM): ")
+    total = 0
+    for expense in expenses:
+        if expense["date"].startswith(month):
+            total += expense["amount"]
+    print(f"Total Expenses for {month}: {total}")
 
 while True:
 
@@ -50,10 +57,10 @@ while True:
 
     if choice == 1:
         add_expense(expenses)
-
     elif choice == 2:
         view_expenses(expenses)
-
+    elif choice == 3:
+        monthly_summary(expenses)
     elif choice == 5:
         print("Bye!")
         break
